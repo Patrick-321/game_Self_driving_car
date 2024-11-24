@@ -1,0 +1,83 @@
+# Test Plan for Project Components
+
+## 1. Front End (User Interface with Kivy)
+
+### Test Cases
+
+**1.1 Canvas Drawing Test**
+
+- **Description**: Test if the user can draw obstacles on the canvas correctly.
+- **Expected Outcome**: User should be able to use the mouse to draw obstacles, and the `sand` array should be updated accordingly.
+
+**1.2 Button Functionality Test**
+
+- **Description**: Test the functionality of the buttons (`clear`, `save`, `load`) in the UI.
+- **Expected Outcome**:
+  - The `clear` button should clear the canvas and reset the `sand` array.
+  - The `save` button should trigger saving the current state of the neural network.
+  - The `load` button should load the last saved model.
+
+**1.3 Responsiveness Test**
+
+- **Description**: Test the UI responsiveness when interacting with different elements (buttons, drawing).
+- **Expected Outcome**: The UI should remain responsive without noticeable delays when interacting with buttons or drawing on the canvas.
+
+## 2. Machine Learning (Deep Q-Learning for Car Control)
+
+### Test Cases
+
+**2.1 Neural Network Forward Pass Test**
+
+- **Description**: Test the forward pass of the neural network to ensure it returns valid Q-values for given states.
+- **Expected Outcome**: The network should output a tensor of Q-values with the correct shape based on the number of actions.
+
+**2.2 Action Selection Test**
+
+- **Description**: Test the `select_action` method to ensure the action is selected correctly based on the current state.
+- **Expected Outcome**: The selected action should be a valid index corresponding to one of the possible actions.
+
+**2.3 Learning Process Test**
+
+- **Description**: Test the `learn` method to verify that the neural network's weights are updated during training.
+- **Expected Outcome**: After calling the `learn` method, the model's parameters should be updated, and the loss should decrease over time.
+
+**2.4 Reward Handling Test**
+
+- **Description**: Test if rewards are correctly accumulated and handled in the `reward_window`.
+- **Expected Outcome**: The rewards should be correctly added to the `reward_window`, and the average reward should be calculated accurately.
+
+## 3. Database (Experience Replay Memory)
+
+### Test Cases
+
+**3.1 Memory Capacity Test**
+
+- **Description**: Test if the replay memory correctly maintains its capacity by removing old experiences when full.
+- **Expected Outcome**: The memory should store up to the defined capacity, and old experiences should be removed as new ones are added once capacity is reached.
+
+**3.2 Sampling Test**
+
+- **Description**: Test the `sample` method to ensure that a random batch of experiences is correctly sampled.
+- **Expected Outcome**: The sampled batch should contain experiences of the correct batch size, and all elements should be valid transitions.
+
+## 4. Integration Tests
+
+### Test Cases
+
+**4.1 Car Movement Integration Test**
+
+- **Description**: Test the integration between the neural network and the car movement to verify if the car reacts appropriately to selected actions.
+- **Expected Outcome**: The car should move according to the actions suggested by the neural network, avoiding obstacles and navigating towards the goal.
+
+**4.2 Save and Load Model Test**
+
+- **Description**: Test the `save` and `load` functionalities to ensure the model's state can be saved and reloaded without issues.
+- **Expected Outcome**: After saving and reloading, the model should retain its learned parameters and perform similarly to before saving.
+
+**4.3 Real-Time Updates Test**
+
+- **Description**: Test the system's ability to update the car's position and state in real time while interacting with the environment.
+- **Expected Outcome**: The car's movement and state updates should be smooth, with no lag or delays in real-time interactions.
+
+
+
